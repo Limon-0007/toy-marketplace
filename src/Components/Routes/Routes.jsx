@@ -6,16 +6,16 @@ import Register from "../LoginSystem/Register/Register";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomeLayout></HomeLayout>,
+    element: <HomeLayout/>,
   },
   {
     path: "login",
-    element: <Login/>
+    element: <Login />,
   },
   {
     path: "signup",
-    element: <Register></Register>
-  }
+    element: <Register/>,
+  },
 ]);
 
 export default router;
