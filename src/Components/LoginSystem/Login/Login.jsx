@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
+  // const {user} = useContext(AuthContext)
+
+  // console.log(user)
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
