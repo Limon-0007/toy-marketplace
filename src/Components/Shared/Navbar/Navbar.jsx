@@ -4,17 +4,17 @@ import { AuthContext } from "../../Providers/AuthProviders";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user)
+  const defaultPhoto = "https://www.svgrepo.com/show/18941/man-user.svg";
 
   const handleLogOut = () => {
     logOut()
-    .then(result => {
-      console.log(result)
-    })
-    .catch(error => {
-      console.log(error.message)
-    })
-  }
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <nav className="navbar bg-base-100 py-6">
@@ -44,10 +44,15 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li tabIndex={0}>
-              <Link>All toys</Link>
+              <Link to="/allToys">All toys</Link>
             </li>
+            {user && (
+              <li tabIndex={0}>
+                <Link to="/myToys">My toys</Link>
+              </li>
+            )}
             <li>
-              <Link>Blogs</Link>
+              <Link to="/blogs">Blogs</Link>
             </li>
           </ul>
         </div>
@@ -65,35 +70,55 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li tabIndex={0}>
-            <Link>All toys</Link>
+            <Link to="/allToys">All toys</Link>
           </li>
+          {user && (
+            <li tabIndex={0}>
+              <Link to="/myToys">My toys</Link>
+            </li>
+          )}
           <li>
             <Link to="/blogs">Blogs</Link>
           </li>
         </ul>
       </div>
       <div className="navbar-end me-4">
-        {!user ? <Link to="/login" className="btn sm:btn-sm md:btn-md">
-          Login
-        </Link> : 
-        <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src={user ? user.photoURL : ""} alt="Image not found"/>
+        {!user ? (
+          <Link to="/login" className="btn sm:btn-sm md:btn-md">
+            Login
+          </Link>
+        ) : (
+          <div
+            className="dropdown dropdown-end tooltip tooltip-bottom font-semibold pe-2 md:pe-4"
+            data-tip={user.displayName}
+          >
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  src={user.photoURL === null ? defaultPhoto : user.photoURL}
+                  alt="Image not found"
+                />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </Link>
+              </li>
+              <li>
+                <Link>Settings</Link>
+              </li>
+              <li onClick={handleLogOut}>
+                <Link>Logout</Link>
+              </li>
+            </ul>
           </div>
-        </label>
-        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-          <li>
-            <Link className="justify-between">
-              Profile
-              <span className="badge">New</span>
-            </Link>
-          </li>
-          <li><Link>Settings</Link></li>
-          <li onClick={handleLogOut}><Link>Logout</Link></li>
-        </ul>
-      </div>
-      }
+        )}
       </div>
     </nav>
   );

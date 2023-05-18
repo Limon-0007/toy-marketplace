@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const [mailError, setMailError] = useState("")
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -19,13 +21,19 @@ const Register = () => {
       photo: photo,
     };
     // console.log(user);
+    if (password.length < 6) {
+      setError("Your password should at least 6 characters long");
+      return;
+    }
     createUser(email, password)
       .then((result) => {
         console.log(result);
-        form.reset()
+        setError("")
+        mailError("")
+        form.reset();
       })
-      .catch((error) => {
-        console.log(error.message);
+      .catch(() => {
+        setMailError("Email already in use");
       });
   };
   return (
@@ -67,6 +75,7 @@ const Register = () => {
                 className="input input-bordered"
                 required
               />
+              <p className="text-red-600 font-semibold text-sm">{mailError}</p>
             </div>
             {/* password */}
             <div className="form-control">
@@ -80,6 +89,7 @@ const Register = () => {
                 className="input input-bordered"
                 required
               />
+              <p className="text-red-600 font-semibold text-sm">{error}</p>
             </div>
             {/* photo  URL */}
             <div className="form-control">

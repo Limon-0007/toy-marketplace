@@ -50,9 +50,9 @@ const AuthProviders = ({ children }) => {
   }, []);
 
   const logOut = () => {
-    setLoader(true)
-    return signOut(auth)
-  }
+    setLoader(true);
+    return signOut(auth);
+  };
 
   const authInfo = {
     user,
@@ -61,7 +61,7 @@ const AuthProviders = ({ children }) => {
     signIn,
     googleSignIn,
     githubSignIn,
-    logOut
+    logOut,
   };
 
   return (

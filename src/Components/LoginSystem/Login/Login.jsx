@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn, user } = useContext(AuthContext);
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
 
   console.log(user)
 
@@ -21,9 +23,13 @@ const Login = () => {
     signIn(email, password)
       .then((user) => {
         console.log(user);
+        setError("")
+        form.reset()
+        navigate("/")
       })
       .catch((error) => {
         console.log(error.message);
+        setError("wrong email/password")
       });
   };
 
@@ -31,9 +37,11 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         console.log(result);
+        setError("")
+        navigate("/")
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
       });
   };
 
@@ -41,9 +49,10 @@ const Login = () => {
     githubSignIn()
       .then((result) => {
         console.log(result);
+        navigate("/")
       })
       .catch((error) => {
-        console.log(error.message);
+        setError(error.message);
       });
   };
 
@@ -87,6 +96,7 @@ const Login = () => {
                   Forgot password?
                 </Link>
               </label>
+              <p className="font-semibold text-red-600">{error}</p>
             </div>
             <div className="form-control mt-6">
               <button type="submit" className="btn btn-primary">
