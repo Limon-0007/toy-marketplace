@@ -44,7 +44,7 @@ const Blogs = () => {
         </div>
       </div>
       {/* question 4 */}
-      <div className="collapse text-center">
+      <div className="collapse text-center mb-8">
         <input type="checkbox" />
         <div className="collapse-title text-lg px-10 font-medium">
           Q4. What is MongoDB aggregate and how does it work?
