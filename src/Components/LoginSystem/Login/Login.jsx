@@ -4,9 +4,9 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
-  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, githubSignIn, user } = useContext(AuthContext);
 
-  // console.log(user)
+  console.log(user)
 
   const handleLogin = (event) => {
     event.preventDefault();
