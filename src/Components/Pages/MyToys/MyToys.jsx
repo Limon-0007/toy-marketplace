@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { FaInfo, FaPlusCircle } from "react-icons/fa";
+import { FaEdit, FaInfo, FaPlusCircle, FaTrash, FaUpload } from "react-icons/fa";
 
 const MyToys = () => {
   const toys = useLoaderData();
@@ -37,8 +37,9 @@ const MyToys = () => {
               <p className="font-medium text-sm">Price: {toy.price} taka</p>
               <p className="font-medium text-sm">Quantity: {toy.quantity}</p>
               </div>
-              <div className="card-actions justify-end">
-                <Link className="bg-slate-600 text-white font-semibold px-3 py-2 rounded flex gap-1 items-center hover:bg-slate-950 duration-200"><FaInfo></FaInfo> view details</Link>
+              <div className="card-actions justify-end gap-4">
+                <Link className="text-2xl text-blue-400 cursor-pointer"><FaEdit></FaEdit></Link>
+                <FaTrash className="text-2xl cursor-pointer"></FaTrash>
               </div>
             </div>
           </div>
