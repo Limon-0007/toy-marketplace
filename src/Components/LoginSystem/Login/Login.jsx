@@ -4,7 +4,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
-  // const {user} = useContext(AuthContext)
+  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
 
   // console.log(user)
 
@@ -17,8 +17,36 @@ const Login = () => {
       email: email,
       password: password,
     };
-    console.log(loggedUser);
+    // console.log(loggedUser);
+    signIn(email, password)
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    githubSignIn()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content grid md:grid-cols-2 flex-col md:px-20 px-8">
@@ -73,8 +101,15 @@ const Login = () => {
             </span>
             <div className="divider">or</div>
             <div className="mx-auto flex gap-4">
-              <FaGoogle className="text-2xl hover:text-yellow-600 duration-200 cursor-pointer"></FaGoogle>
-              <FaGithub className="text-2xl hover:text-blue-600 duration-200 cursor-pointer"></FaGithub>
+              <FaGoogle
+                onClick={handleGoogleSignIn}
+                className="text-2xl hover:text-yellow-600 duration-200 cursor-pointer"
+              ></FaGoogle>
+              {/* github */}
+              <FaGithub
+                onClick={handleGithubSignIn}
+                className="text-2xl hover:text-blue-600 duration-200 cursor-pointer"
+              ></FaGithub>
             </div>
           </form>
         </div>
