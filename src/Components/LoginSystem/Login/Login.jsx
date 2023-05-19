@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
-  const { signIn, googleSignIn, githubSignIn, user } = useContext(AuthContext);
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,17 +34,6 @@ const Login = () => {
       .then((result) => {
         console.log(result);
         setError("");
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  };
-
-  const handleGithubSignIn = () => {
-    githubSignIn()
-      .then((result) => {
-        console.log(result);
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -111,11 +100,6 @@ const Login = () => {
                 onClick={handleGoogleSignIn}
                 className="text-2xl hover:text-yellow-600 duration-200 cursor-pointer"
               ></FaGoogle>
-              {/* github */}
-              <FaGithub
-                onClick={handleGithubSignIn}
-                className="text-2xl hover:text-blue-600 duration-200 cursor-pointer"
-              ></FaGithub>
             </div>
           </form>
         </div>
