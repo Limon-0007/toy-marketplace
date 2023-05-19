@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const AddAToy = () => {
+  const {user} = useContext(AuthContext)
+
   const handleAddAToy = (event) => {
-    // const notify = () => toast("Wow so easy!");
     event.preventDefault();
     const form = event.target;
     const photo = form.photo.value;
@@ -131,6 +133,7 @@ const AddAToy = () => {
             <input
               type="email"
               name="email"
+              defaultValue={user?.email}
               placeholder="Seller Email"
               className="input input-bordered"
               required

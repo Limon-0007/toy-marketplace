@@ -12,7 +12,7 @@ const AllToys = () => {
       <hr className="border w-2/4 mx-auto mb-8" />
       {/* cards */}
       <div className="px-8">
-        {toys.map((toy) => (
+        {toys?.map((toy) => (
           <div
             key={toy._id}
             className="card card-side bg-base-100 shadow-xl mb-4 h-52"

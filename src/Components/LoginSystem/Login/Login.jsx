@@ -5,11 +5,10 @@ import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn, user } = useContext(AuthContext);
-  const [error, setError] = useState("")
-  const location = useLocation()
-  const navigate = useNavigate()
-  const from = location.state?.from?.pathname || "/"
-  console.log(from)
+  const [error, setError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -17,17 +16,16 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    // console.log(loggedUser);
     signIn(email, password)
       .then((user) => {
         console.log(user);
-        setError("")
-        form.reset()
-        navigate(from, {replace: true})
+        setError("");
+        form.reset();
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
-        setError("wrong email/password")
+        setError("wrong email/password");
       });
   };
 
@@ -35,8 +33,8 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         console.log(result);
-        setError("")
-        navigate(from, {replace: true})
+        setError("");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
@@ -47,7 +45,7 @@ const Login = () => {
     githubSignIn()
       .then((result) => {
         console.log(result);
-        navigate(from, {replace: true})
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
