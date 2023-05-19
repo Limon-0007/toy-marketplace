@@ -31,6 +31,7 @@ const ViewDetails = () => {
     storedToyId.push(id);
     const updatedToyIds = JSON.stringify(storedToyId);
     localStorage.setItem("toy-collection", updatedToyIds);
+
     if (!clicked) {
       let timerInterval;
       Swal.fire({
