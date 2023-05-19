@@ -9,65 +9,65 @@ import MyToys from "../Pages/MyToys/MyToys";
 import AddAToy from "../Pages/AddAToy/AddAToy";
 import ViewDetails from "../Pages/ViewDetails/ViewDetails";
 import UpdateToys from "../Pages/UpdateToys/UpdateToys";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomeLayout/>,
+    element: <HomeLayout />,
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
         path: "allToys",
         element: <AllToys></AllToys>,
-        loader: () => fetch("http://localhost:5000/addAToy")
+        loader: () =>
+          fetch("https://toy-marketplace-server-side-nine.vercel.app/addAToy"),
       },
       {
         path: "allToys/:id",
-        element: <ViewDetails></ViewDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/addAToy/${params.id}`)
+        element: (
+          <PrivateRoute>
+            <ViewDetails></ViewDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://toy-marketplace-server-side-nine.vercel.app/addAToy/${params.id}`
+          ),
       },
       {
         path: "myToys",
-        element: <MyToys></MyToys>
+        element: <MyToys></MyToys>,
       },
       {
         path: "myToys/:id",
         element: <UpdateToys></UpdateToys>,
-        loader: ({params}) => fetch(`http://localhost:5000/addAToy/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://toy-marketplace-server-side-nine.vercel.app/addAToy/${params.id}`
+          ),
       },
       {
         path: "myToys/addAToy",
-        element: <AddAToy></AddAToy>
+        element: <AddAToy></AddAToy>,
       },
       {
         path: "blogs",
-        element: <Blogs></Blogs>
+        element: <Blogs></Blogs>,
       },
       {
         path: "login",
-        element: <Login></Login>
+        element: <Login></Login>,
       },
       {
         path: "signup",
-        element: <Register></Register>
-      }
-    ]
+        element: <Register></Register>,
+      },
+    ],
   },
-  // {
-  //   path: "blogs",
-  //   element: <Blogs></Blogs>
-  // },
-  // {
-  //   path: "login",
-  //   element: <Login />,
-  // },
-  // {
-  //   path: "signup",
-  //   element: <Register/>,
-  // },
 ]);
 
 export default router;

@@ -46,11 +46,13 @@ const AuthProviders = ({ children }) => {
       setUser(currentUser);
       setLoader(false);
     });
-    return () => unsubscribe();
+    return () => {
+      return unsubscribe();
+    };
   }, []);
 
   const logOut = () => {
-    setLoader(true);
+    setLoader(false);
     return signOut(auth);
   };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 const AddAToy = () => {
@@ -28,7 +27,7 @@ const AddAToy = () => {
       details,
     };
     // console.log(newToy);
-    fetch("http://localhost:5000/addAToy", {
+    fetch("https://toy-marketplace-server-side-nine.vercel.app/addAToy", {
       method: "POST",
       headers: {
         "content-type": "application/json",

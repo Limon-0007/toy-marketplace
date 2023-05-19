@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 const UpdateToys = () => {
   const UpdateToy = useLoaderData();
 
-  const {details, email, name, photo, price, quantity, ratings, sellerName, subsubCategory, _id} = UpdateToy
+  const {details, email, name, photo, price, quantity, ratings, sellerName, subCategory, _id} = UpdateToy
   const handleUpdateToy = (event) => {
     event.preventDefault()
     const form = event.target;
@@ -133,7 +133,7 @@ const UpdateToys = () => {
             <input
               type="text"
               name="subCategory"
-              defaultValue={subsubCategory}
+              defaultValue={subCategory}
               placeholder="Sub Category"
               className="input input-bordered"
               required

@@ -1,31 +1,29 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Login = () => {
   const { signIn, googleSignIn, githubSignIn, user } = useContext(AuthContext);
   const [error, setError] = useState("")
+  const location = useLocation()
   const navigate = useNavigate()
-
-  console.log(user)
+  const from = location.state?.from?.pathname || "/"
+  console.log(from)
 
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    const loggedUser = {
-      email: email,
-      password: password,
-    };
+
     // console.log(loggedUser);
     signIn(email, password)
       .then((user) => {
         console.log(user);
         setError("")
         form.reset()
-        navigate("/")
+        navigate(from, {replace: true})
       })
       .catch((error) => {
         console.log(error.message);
@@ -38,7 +36,7 @@ const Login = () => {
       .then((result) => {
         console.log(result);
         setError("")
-        navigate("/")
+        navigate(from, {replace: true})
       })
       .catch((error) => {
         setError(error.message);
@@ -49,7 +47,7 @@ const Login = () => {
     githubSignIn()
       .then((result) => {
         console.log(result);
-        navigate("/")
+        navigate(from, {replace: true})
       })
       .catch((error) => {
         setError(error.message);

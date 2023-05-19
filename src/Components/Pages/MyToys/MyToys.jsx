@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { FaEdit, FaPlusCircle, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const MyToys = () => {
-    const [toys, setToys] = useState([]);
+  const [toys, setToys] = useState([]);
+  const { user } = useContext(AuthContext);
 
-    useEffect(() => {
-        fetch("http://localhost:5000/addAToy")
-        .then(res => res.json())
-        .then(data => setToys(data))
-    }, [])
+  const url = `https://toy-marketplace-server-side-nine.vercel.app/myToys?email=${user?.email}`;
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setToys(data));
+  }, [url]);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -23,7 +27,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/addAToy/${id}`, {
+        fetch(`https://toy-marketplace-server-side-nine.vercel.app/addAToy/${id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
@@ -33,8 +37,8 @@ const MyToys = () => {
           .then((data) => {
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              const updatedToys = toys.filter(toy => toy._id !== id)
-              setToys(updatedToys)
+              const updatedToys = toys.filter((toy) => toy._id !== id);
+              setToys(updatedToys);
             }
           });
       }
@@ -77,7 +81,10 @@ const MyToys = () => {
                 <p className="font-medium text-sm">Quantity: {toy.quantity}</p>
               </div>
               <div className="card-actions justify-end gap-4">
-                <Link to={`/myToys/${toy._id}`} className="text-2xl text-blue-400 cursor-pointer">
+                <Link
+                  to={`/myToys/${toy._id}`}
+                  className="text-2xl text-blue-400 cursor-pointer"
+                >
                   <FaEdit></FaEdit>
                 </Link>
                 <FaTrash
