@@ -1,5 +1,6 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const AddAToy = () => {
   const handleAddAToy = (event) => {
@@ -38,15 +39,29 @@ const AddAToy = () => {
       .then((data) => {
         // console.log(data);
         if (data.acknowledged) {
-            alert("Toy added successfully");
-        //   <div className="toast toast-center">
-        //     <div className="alert alert-success">
-        //       <div>
-        //         <span>Toy added successfully.</span>
-        //       </div>
-        //     </div>
-        //   </div>;
-        form.reset()
+          let timerInterval;
+          Swal.fire({
+            title: "Toy added successfully!",
+            html: "I will close in <b></b> milliseconds.",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+              const b = Swal.getHtmlContainer().querySelector("b");
+              timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft();
+              }, 100);
+            },
+            willClose: () => {
+              clearInterval(timerInterval);
+            },
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log("I was closed by the timer");
+            }
+          });
+          form.reset();
         }
       });
   };

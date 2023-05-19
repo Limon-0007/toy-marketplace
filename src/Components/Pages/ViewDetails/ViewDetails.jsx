@@ -1,10 +1,13 @@
-import React from "react";
-import { FaArrowLeft } from "react-icons/fa";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ViewDetails = () => {
   const toy = useLoaderData();
+  const [clicked, setClicked] = useState(false);
   const {
+    _id,
     name,
     details,
     photo,
@@ -15,7 +18,45 @@ const ViewDetails = () => {
     sellerName,
     subCategory,
   } = toy;
-  
+
+  const handleFavorite = (id) => {
+    setClicked(true);
+    const storedToyIds = localStorage.getItem("toy-collection");
+    let storedToyId = [];
+
+    if (storedToyIds) {
+      storedToyId = JSON.parse(storedToyIds);
+    }
+
+    storedToyId.push(id);
+    const updatedToyIds = JSON.stringify(storedToyId);
+    localStorage.setItem("toy-collection", updatedToyIds);
+    if (!clicked) {
+      let timerInterval;
+      Swal.fire({
+        title: "Added to favorite successfully!",
+        html: "I will close in <b></b> milliseconds.",
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const b = Swal.getHtmlContainer().querySelector("b");
+          timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft();
+          }, 100);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        },
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log("I was closed by the timer");
+        }
+      });
+    }
+  };
+
   return (
     <div className="card w-96 mx-auto bg-base-100 shadow-xl mb-4">
       <figure>
@@ -33,12 +74,17 @@ const ViewDetails = () => {
           <p>Ratings: {ratings} star</p>
         </div>
         <div className="card-actions justify-end">
-          <Link
-            to="/allToys"
-            className="font-semibold bg-slate-700 px-4 py-2 rounded text-white flex items-center gap-1"
+          <button
+            className="cursor-pointer text-2xl"
+            onClick={() => handleFavorite(_id)}
+            disabled={clicked}
           >
-            <FaArrowLeft></FaArrowLeft> Go Back
-          </Link>
+            {!clicked ? (
+              <FaRegHeart></FaRegHeart>
+            ) : (
+              <FaHeart className="text-red-600"></FaHeart>
+            )}
+          </button>
         </div>
       </div>
     </div>
