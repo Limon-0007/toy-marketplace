@@ -77,7 +77,7 @@ const MyToys = () => {
                 <p className="font-medium text-sm">Quantity: {toy.quantity}</p>
               </div>
               <div className="card-actions justify-end gap-4">
-                <Link className="text-2xl text-blue-400 cursor-pointer">
+                <Link to={`/myToys/${toy._id}`} className="text-2xl text-blue-400 cursor-pointer">
                   <FaEdit></FaEdit>
                 </Link>
                 <FaTrash
