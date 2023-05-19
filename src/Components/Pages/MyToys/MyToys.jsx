@@ -1,10 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { FaEdit, FaInfo, FaPlusCircle, FaTrash, FaUpload } from "react-icons/fa";
+import { FaEdit, FaPlusCircle, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
-  const toys = useLoaderData();
-  console.log(toys);
+    const [toys, setToys] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:5000/addAToy")
+        .then(res => res.json())
+        .then(data => setToys(data))
+    }, [])
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/addAToy/${id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              const updatedToys = toys.filter(toy => toy._id !== id)
+              setToys(updatedToys)
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
       <h2 className="text-center font-bold text-5xl mt-4 mb-6 text-slate-600">
@@ -22,24 +57,33 @@ const MyToys = () => {
       </div>
       {/* cards */}
       <div className="px-8">
-        {toys.map((toy) => (
+        {toys?.map((toy) => (
           <div
             key={toy._id}
             className="card card-side bg-base-100 shadow-xl mb-4 h-52"
           >
             <figure>
-              <img className="h-full w-48 p-3 border border-5" src={toy?.photo} alt="Image not found" />
+              <img
+                className="h-full w-48 p-3 border border-5"
+                src={toy?.photo}
+                alt="Image not found"
+              />
             </figure>
             <div className="card-body">
               <h2 className="card-title text-3xl">{toy.name}</h2>
               <div>
-              <p className="font-semibold">Seller: {toy.sellerName}</p>
-              <p className="font-medium text-sm">Price: {toy.price} taka</p>
-              <p className="font-medium text-sm">Quantity: {toy.quantity}</p>
+                <p className="font-semibold">Seller: {toy.sellerName}</p>
+                <p className="font-medium text-sm">Price: {toy.price} taka</p>
+                <p className="font-medium text-sm">Quantity: {toy.quantity}</p>
               </div>
               <div className="card-actions justify-end gap-4">
-                <Link className="text-2xl text-blue-400 cursor-pointer"><FaEdit></FaEdit></Link>
-                <FaTrash className="text-2xl cursor-pointer"></FaTrash>
+                <Link className="text-2xl text-blue-400 cursor-pointer">
+                  <FaEdit></FaEdit>
+                </Link>
+                <FaTrash
+                  onClick={() => handleDelete(toy._id)}
+                  className="text-2xl cursor-pointer"
+                ></FaTrash>
               </div>
             </div>
           </div>
