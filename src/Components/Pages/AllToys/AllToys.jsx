@@ -15,10 +15,10 @@ const AllToys = () => {
         {toys?.map((toy) => (
           <div
             key={toy._id}
-            className="card card-side bg-base-100 shadow-xl mb-4 h-52"
+            className="card card-compact md:card-side bg-base-100 shadow-xl mb-4 md:h-52"
           >
             <figure>
-              <img className="h-full w-48 p-3 border border-5" src={toy?.photo} alt="Image not found" />
+              <img className="md:h-full md:w-48 p-3 border border-5" src={toy?.photo} alt="Image not found" />
             </figure>
             <div className="card-body">
               <h2 className="card-title text-3xl">{toy.name}</h2>

@@ -64,11 +64,11 @@ const MyToys = () => {
         {toys?.map((toy) => (
           <div
             key={toy._id}
-            className="card card-side bg-base-100 shadow-xl mb-4 h-52"
+            className="card card-compact md:card-side bg-base-100 shadow-xl mb-4 md:h-52"
           >
             <figure>
               <img
-                className="h-full w-48 p-3 border border-5"
+                className="md:h-full md:w-48 p-3 border border-5"
                 src={toy?.photo}
                 alt="Image not found"
               />
