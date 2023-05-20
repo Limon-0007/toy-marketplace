@@ -10,6 +10,7 @@ import AddAToy from "../Pages/AddAToy/AddAToy";
 import ViewDetails from "../Pages/ViewDetails/ViewDetails";
 import UpdateToys from "../Pages/UpdateToys/UpdateToys";
 import PrivateRoute from "./PrivateRoute";
+import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,12 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <NotFoundPage></NotFoundPage>
+  }
 ]);
 
 export default router;
+
+//TODO: Add a 404 page
