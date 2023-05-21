@@ -171,7 +171,7 @@ const AddAToy = () => {
               <span className="label-text">Price</span>
             </label>
             <input
-              type="textg"
+              type="text"
               name="price"
               placeholder="Price"
               className="input input-bordered"

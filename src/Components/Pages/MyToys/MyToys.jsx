@@ -17,7 +17,7 @@ const MyToys = () => {
       .then((data) => setToys(data));
   }, [url]);
 
-  const handleSort = (value) => {
+  const handleSort = (event) => {
     setSorting(event.target.value);
   };
 
