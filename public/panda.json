@@ -1,0 +1,41 @@
+
+   [
+      {
+        "name": "Pandy",
+        "price": "$19.99",
+        "info": "Meet Pandy, the adorable panda toy! Made with soft, high-quality materials, Pandy is perfect for cuddling and playtime.",
+        "photo": "https://example.com/pandy.jpg"
+      },
+      {
+        "name": "Panda Pal",
+        "price": "$24.99",
+        "info": "Introducing Panda Pal, your new best friend! With its huggable design and lovable expression, Panda Pal is ready for all your adventures.",
+        "photo": "https://example.com/panda-pal.jpg"
+      },
+      {
+        "name": "Bamboo Bear",
+        "price": "$17.99",
+        "info": "Bamboo Bear is a panda toy that loves munching on bamboo leaves. With its fluffy fur and playful nature, it's sure to bring joy to any panda lover.",
+        "photo": "https://example.com/bamboo-bear.jpg"
+      },
+      {
+        "name": "Pandi",
+        "price": "$21.99",
+        "info": "Say hello to Pandi, the cuddliest panda companion you'll ever meet! Pandi is super soft and always ready for a warm hug.",
+        "photo": "https://example.com/pandi.jpg"
+      },
+      {
+        "name": "Fluffy Paws",
+        "price": "$29.99",
+        "info": "With its fluffy paws and gentle eyes, Fluffy Paws is the ultimate panda toy for comfort and companionship.",
+        "photo": "https://example.com/fluffy-paws.jpg"
+      },
+      {
+        "name": "Bamboo Breeze",
+        "price": "$22.99",
+        "info": "Experience the soothing breeze of Bamboo Breeze, a panda toy that brings tranquility and joy to your life.",
+        "photo": "https://example.com/bamboo-breeze.jpg"
+      }
+    ]
+  
+  

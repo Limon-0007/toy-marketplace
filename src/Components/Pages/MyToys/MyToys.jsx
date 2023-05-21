@@ -7,14 +7,19 @@ import { AuthContext } from "../../Providers/AuthProviders";
 const MyToys = () => {
   const [toys, setToys] = useState([]);
   const { user } = useContext(AuthContext);
+  const [sorting, setSorting] = useState("aes");
 
-  const url = `https://toy-marketplace-server-side-nine.vercel.app/myToys?email=${user?.email}`;
+  const url = `https://toy-marketplace-server-side-nine.vercel.app/myToys?email=${user?.email}&query=${sorting}`;
 
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, [url]);
+
+  const handleSort = (value) => {
+    setSorting(event.target.value);
+  };
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -27,12 +32,15 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://toy-marketplace-server-side-nine.vercel.app/addAToy/${id}`, {
-          method: "DELETE",
-          headers: {
-            "content-type": "application/json",
-          },
-        })
+        fetch(
+          `https://toy-marketplace-server-side-nine.vercel.app/addAToy/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -50,8 +58,20 @@ const MyToys = () => {
         My <span className="text-orange-400">Toys</span>
       </h2>
       <hr className="border w-2/4 mx-auto mb-8" />
-      {/* add a toy button */}
-      <div className="justify-end flex pe-8 mb-8">
+      {/* sort by price */}
+      <div className="justify-between flex px-8 mb-8">
+        <select
+          value={sorting}
+          onChange={handleSort}
+          className="select select-info w-full max-w-xs"
+        >
+          <option disabled selected>
+            Sort By price
+          </option>
+          <option value="asc">Bigger to smaller</option>
+          <option value="dsc">Smaller to bigger</option>
+        </select>
+        {/* add a toy button */}
         <Link
           className="flex gap-2 items-center font-semibold"
           to="/myToys/addAToy"

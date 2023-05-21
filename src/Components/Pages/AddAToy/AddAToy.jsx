@@ -1,9 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const AddAToy = () => {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
+
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleChange = (event) => {
+    setSelectedValue(event);
+  };
 
   const handleAddAToy = (event) => {
     event.preventDefault();
@@ -13,8 +19,9 @@ const AddAToy = () => {
     const name = form.name.value;
     const sellerName = form.sellerName.value;
     const email = form.email.value;
-    const subCategory = form.subCategory.value;
+    const subCategory = selectedValue;
     const price = form.price.value;
+    const priceNumber = parseFloat(price)
     const ratings = form.ratings.value;
     const details = form.details.value;
     const newToy = {
@@ -24,7 +31,7 @@ const AddAToy = () => {
       sellerName,
       email,
       subCategory,
-      price,
+      priceNumber,
       ratings,
       details,
     };
@@ -143,13 +150,18 @@ const AddAToy = () => {
             <label className="label">
               <span className="label-text">Sub category</span>
             </label>
-            <input
-              type="text"
-              name="subCategory"
-              placeholder="Sub Category"
-              className="input input-bordered"
-              required
-            />
+            <select
+              className="select select-bordered w-full max-w-xs"
+              // value={selectedValue}
+              onChange={handleChange}
+            >
+              <option disabled value="">
+                Select one
+              </option>
+              <option value="Bamboo_Buddy">Bamboo Buddy</option>
+              <option value="Pawsome_Panda">Pawsome Panda</option>
+              <option value="Bamboo_Breeze">Bamboo Breeze</option>
+            </select>
           </div>
         </div>
         {/* Price & Ratings */}
@@ -159,7 +171,7 @@ const AddAToy = () => {
               <span className="label-text">Price</span>
             </label>
             <input
-              type="text"
+              type="textg"
               name="price"
               placeholder="Price"
               className="input input-bordered"

@@ -5,7 +5,7 @@ const Slider = () => {
     <div className="carousel w-full">
       <div id="slide1" className="carousel-item relative w-full">
         <img
-          src="https://i.ibb.co/94q6SSM/fotor-2023-5-18-2-17-7.png"
+          src="https://img.freepik.com/premium-vector/panda-is-playing-together-garden_43633-2359.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.2.311772693.1668666155&semt=ais"
           className="w-full h-4/5"
         />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -19,7 +19,7 @@ const Slider = () => {
       </div>
       <div id="slide2" className="carousel-item relative w-full">
         <img
-          src="https://img.freepik.com/premium-photo/make-up-items-pink-background-blusher-eyeshadows-brushes-wooden-background-girl-beauty-essentials_274234-12592.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.2.311772693.1668666155&semt=ais"
+          src="https://i.ibb.co/94q6SSM/fotor-2023-5-18-2-17-7.png"
           className="w-full h-4/5"
         />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -33,7 +33,7 @@ const Slider = () => {
       </div>
       <div id="slide3" className="carousel-item relative w-full">
         <img
-          src="https://img.freepik.com/free-vector/retro-advertising-sale-banner-design-template_23-2149634226.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.2.311772693.1668666155&semt=ais"
+          src="https://img.freepik.com/premium-psd/happy-valentines-day-bear-banner-holiday-romantic-background-mockup-with-decorative-love-hearts_169356-1308.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.1.311772693.1668666155&semt=ais"
           className="w-full h-4/5"
         />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">

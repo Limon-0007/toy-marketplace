@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const AllToys = () => {
   const toys = useLoaderData();
+
   return (
     <div>
       <h2 className="text-center font-bold text-5xl mt-4 mb-6 text-slate-600">

@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 const ViewDetails = () => {
   const toy = useLoaderData();
+  console.log(toy)
   const [clicked, setClicked] = useState(false);
   const {
     _id,

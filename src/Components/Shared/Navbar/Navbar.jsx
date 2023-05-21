@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
 
 const Navbar = () => {
@@ -41,18 +41,46 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-semibold"
           >
             <li>
-              <Link to="/">Home</Link>
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-blue-700" : ""
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li tabIndex={0}>
-              <Link to="/allToys">All toys</Link>
+              <NavLink
+                to="/allToys"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-blue-700" : ""
+                }
+              >
+                All toys
+              </NavLink>
             </li>
             {user && (
               <li tabIndex={0}>
-                <Link to="/myToys">My toys</Link>
+                <NavLink
+                  to="/myToys"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-blue-700" : ""
+                  }
+                >
+                  My toys
+                </NavLink>
               </li>
             )}
             <li>
-              <Link to="/blogs">Blogs</Link>
+              <NavLink
+                to="/blogs"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-blue-700" : ""
+                }
+              >
+                Blogs
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -67,18 +95,46 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-semibold">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-blue-700" : ""
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li tabIndex={0}>
-            <Link to="/allToys">All toys</Link>
+            <Link
+              to="/allToys"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-blue-700" : ""
+              }
+            >
+              All toys
+            </Link>
           </li>
           {user && (
             <li tabIndex={0}>
-              <Link to="/myToys">My toys</Link>
+              <Link
+                to="/myToys"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-blue-700" : ""
+                }
+              >
+                My toys
+              </Link>
             </li>
           )}
           <li>
-            <Link to="/blogs">Blogs</Link>
+            <Link
+              to="/blogs"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-blue-700" : ""
+              }
+            >
+              Blogs
+            </Link>
           </li>
         </ul>
       </div>
