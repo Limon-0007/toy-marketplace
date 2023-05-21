@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaEdit, FaPlusCircle, FaTrash } from "react-icons/fa";
+import { FaEdit, FaPlusCircle, FaRegStarHalf, FaStar, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
+import Rating from "react-rating";
 
 const MyToys = () => {
   const [toys, setToys] = useState([]);
@@ -65,7 +66,7 @@ const MyToys = () => {
           onChange={handleSort}
           className="select select-info w-full max-w-xs"
         >
-          <option disabled selected>
+          <option selected>
             Sort By price
           </option>
           <option value="asc">Bigger to smaller</option>
@@ -100,6 +101,19 @@ const MyToys = () => {
                 <p className="font-medium text-sm">Price: {toy.price} taka</p>
                 <p className="font-medium text-sm">Quantity: {toy.quantity}</p>
               </div>
+              <Rating className="text-orange-400"
+                        placeholderRating={toy.ratings}
+                        emptySymbol={
+                          
+                          <FaRegStarHalf></FaRegStarHalf>
+                        }
+                        placeholderSymbol={
+                          <FaStar></FaStar>
+                        }
+                        fullSymbol={
+                          <FaStar></FaStar>
+                        }
+                      />
               <div className="card-actions justify-end gap-4">
                 <Link
                   to={`/myToys/${toy._id}`}

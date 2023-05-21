@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { FaRegStar, FaRegStarHalf, FaStar, FaStarHalf } from "react-icons/fa";
+import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 
@@ -58,7 +60,11 @@ const ShopByCategory = () => {
               {pandas.map((panda) => (
                 <div className="card bg-base-100 shadow-xl" key={panda._id}>
                   <figure>
-                    <img className="h-48 w-full" src={panda.photo} alt="Image not found" />
+                    <img
+                      className="h-48 w-full"
+                      src={panda.photo}
+                      alt="Image not found"
+                    />
                   </figure>
                   <div className="card-body">
                     <div className="font-semibold">
@@ -66,6 +72,19 @@ const ShopByCategory = () => {
                       <p>Price: {panda.price}</p>
                       <p>Quantity: {panda.quantity}</p>
                     </div>
+                    <Rating className="text-orange-400"
+                        placeholderRating={panda.ratings}
+                        emptySymbol={
+                          
+                          <FaRegStarHalf></FaRegStarHalf>
+                        }
+                        placeholderSymbol={
+                          <FaStar></FaStar>
+                        }
+                        fullSymbol={
+                          <FaStar></FaStar>
+                        }
+                      />
                     <div className="card-actions justify-end">
                       <Link
                         className="py-2 px-4 font-semibold bg-slate-900 text-white hover:bg-slate-700 duration-200 rounded"
@@ -85,7 +104,11 @@ const ShopByCategory = () => {
               {pandas.map((panda) => (
                 <div className="card bg-base-100 shadow-xl" key={panda._id}>
                   <figure>
-                  <img className="h-48 w-full" src={panda.photo} alt="Image not found" />
+                    <img
+                      className="h-48 w-full"
+                      src={panda.photo}
+                      alt="Image not found"
+                    />
                   </figure>
                   <div className="card-body">
                     <div className="font-semibold">
@@ -112,7 +135,11 @@ const ShopByCategory = () => {
               {pandas.map((panda) => (
                 <div className="card bg-base-100 shadow-xl" key={panda._id}>
                   <figure>
-                  <img className="h-48 w-full" src={panda.photo} alt="Image not found" />
+                    <img
+                      className="h-48 w-full"
+                      src={panda.photo}
+                      alt="Image not found"
+                    />
                   </figure>
                   <div className="card-body">
                     <div className="font-semibold">

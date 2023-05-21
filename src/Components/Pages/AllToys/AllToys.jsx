@@ -1,5 +1,6 @@
 import React from "react";
-import { FaInfo } from "react-icons/fa";
+import { FaInfo, FaRegStarHalf, FaStar } from "react-icons/fa";
+import Rating from "react-rating";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllToys = () => {
@@ -28,6 +29,19 @@ const AllToys = () => {
               <p className="font-medium text-sm">Price: {toy.price} taka</p>
               <p className="font-medium text-sm">Quantity: {toy.quantity}</p>
               </div>
+              <Rating className="text-orange-400"
+                        placeholderRating={toy.ratings}
+                        emptySymbol={
+                          
+                          <FaRegStarHalf></FaRegStarHalf>
+                        }
+                        placeholderSymbol={
+                          <FaStar></FaStar>
+                        }
+                        fullSymbol={
+                          <FaStar></FaStar>
+                        }
+                      />
               <div className="card-actions justify-end">
                 <Link to={`/allToys/${toy._id}`} className="bg-slate-600 text-white font-semibold px-3 py-2 rounded flex gap-1 items-center hover:bg-slate-950 duration-200"><FaInfo></FaInfo> view details</Link>
               </div>

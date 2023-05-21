@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaRegStarHalf, FaStar } from "react-icons/fa";
+import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -73,7 +74,19 @@ const ViewDetails = () => {
           <p>Price: {price} taka</p>
           <p>Quantity: {quantity}</p>
           <p>Sub category: {subCategory}</p>
-          <p>Ratings: {ratings} star</p>
+          <p className="flex items-center gap-2">Ratings: <Rating className="text-orange-400 text-lg"
+                        placeholderRating={ratings}
+                        emptySymbol={
+                          
+                          <FaRegStarHalf></FaRegStarHalf>
+                        }
+                        placeholderSymbol={
+                          <FaStar></FaStar>
+                        }
+                        fullSymbol={
+                          <FaStar></FaStar>
+                        }
+                      /></p>
         </div>
         <div className="card-actions justify-end">
           <button
