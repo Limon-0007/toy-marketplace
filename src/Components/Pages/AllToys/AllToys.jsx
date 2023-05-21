@@ -2,10 +2,11 @@ import React from "react";
 import { FaInfo, FaRegStarHalf, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { Link, useLoaderData } from "react-router-dom";
+import UseTitle from "../../Hooks/UseTitle";
 
 const AllToys = () => {
   const toys = useLoaderData();
-
+  UseTitle("All Toys")
   return (
     <div>
       <h2 className="text-center font-bold text-5xl mt-4 mb-6 text-slate-600">

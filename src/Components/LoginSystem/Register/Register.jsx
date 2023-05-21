@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProviders";
+import UseTitle from "../../Hooks/UseTitle";
 
 const Register = () => {
+  UseTitle("Register")
   const { createUser } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [mailError, setMailError] = useState("");

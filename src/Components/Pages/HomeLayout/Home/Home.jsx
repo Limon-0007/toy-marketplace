@@ -4,8 +4,10 @@ import PhotoGallery from './PhotoGallery/PhotoGallery';
 import ShopByCategory from './ShopByCategory/ShopByCategory';
 import UserReview from './UserReview/UserReview';
 import AboutKiditos from './AboutKiditos/AboutKiditos';
+import UseTitle from '../../../Hooks/UseTitle';
 
 const Home = () => {
+    UseTitle("Home")
     return (
         <>
         <Slider></Slider>

@@ -3,8 +3,10 @@ import { FaHeart, FaRegHeart, FaRegStarHalf, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import UseTitle from "../../Hooks/UseTitle";
 
 const ViewDetails = () => {
+  UseTitle("View Details")
   const toy = useLoaderData();
   console.log(toy)
   const [clicked, setClicked] = useState(false);

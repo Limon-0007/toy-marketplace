@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
+import UseTitle from "../../Hooks/UseTitle";
 
 const AddAToy = () => {
   const { user } = useContext(AuthContext);
-
+  UseTitle("Add a Toy")
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleChange = (event) => {

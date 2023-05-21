@@ -4,8 +4,10 @@ import { FaEdit, FaPlusCircle, FaRegStarHalf, FaStar, FaTrash } from "react-icon
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Rating from "react-rating";
+import UseTitle from "../../Hooks/UseTitle";
 
 const MyToys = () => {
+  UseTitle("My Toys")
   const [toys, setToys] = useState([]);
   const { user } = useContext(AuthContext);
   const [sorting, setSorting] = useState("aes");
