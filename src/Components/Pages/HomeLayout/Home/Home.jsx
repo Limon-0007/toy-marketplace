@@ -3,6 +3,7 @@ import Slider from './Hero/Slider';
 import PhotoGallery from './PhotoGallery/PhotoGallery';
 import ShopByCategory from './ShopByCategory/ShopByCategory';
 import UserReview from './UserReview/UserReview';
+import AboutKiditos from './AboutKiditos/AboutKiditos';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
         <PhotoGallery></PhotoGallery>
         <ShopByCategory></ShopByCategory>
         <UserReview></UserReview>
+        <AboutKiditos></AboutKiditos>
         </>
     );
 };
