@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaInfo, FaRegStarHalf, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { Link, useLoaderData } from "react-router-dom";
 import UseTitle from "../../Hooks/UseTitle";
 
 const AllToys = () => {
-  const toys = useLoaderData();
+  // const toys = useLoaderData();
+  const [toys, setToys] = useState([])
   UseTitle("All Toys")
+
+  useEffect(() => {
+    fetch("https://toy-marketplace-server-side-nine.vercel.app/addAToy")
+    .then(res => res.json())
+    .then(data => setToys(data))
+  }, [])
+
+
+  const HandleSearch = (event) => {
+    event.preventDefault()
+    const form = event.target
+    const search = form.text.value
+
+    useEffect(() => {
+      fetch(`https://toy-marketplace-server-side-nine.vercel.app/toySearch/${search}`)
+      .then(res => res.json())
+      .then(data => setToys(data))
+    }, [search])
+
+  }
   return (
     <div>
       <h2 className="text-center font-bold text-5xl mt-4 mb-6 text-slate-600">
@@ -14,6 +35,12 @@ const AllToys = () => {
       </h2>
       <hr className="border w-2/4 mx-auto mb-8" />
       {/* cards */}
+      <form onSubmit={HandleSearch} className="form-control">
+      <div className="flex gap-4 ps-8 mb-8">
+      <input type="text" name="text" placeholder="Search" className="input input-bordered" />
+      <input className="py-2 px-2 font-semibold bg-slate-700 text-white rounded" type="submit" value="search" />
+      </div>
+    </form>
       <div className="px-8">
         {toys?.map((toy) => (
           <div
