@@ -9,7 +9,8 @@ const AddAToy = () => {
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleChange = (event) => {
-    setSelectedValue(event);
+    const selectedValue = event.target.value
+    setSelectedValue(selectedValue);
   };
 
   const handleAddAToy = (event) => {
@@ -21,6 +22,7 @@ const AddAToy = () => {
     const sellerName = form.sellerName.value;
     const email = form.email.value;
     const subCategory = selectedValue;
+    console.log(subCategory)
     const price = form.price.value;
     const priceNumber = parseFloat(price)
     const ratings = form.ratings.value;

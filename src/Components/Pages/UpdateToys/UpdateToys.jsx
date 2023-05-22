@@ -31,7 +31,7 @@ const UpdateToys = () => {
       details,
     };
 
-    fetch(`http://localhost:5000/addAToy/${_id}`, {
+    fetch(`https://toy-marketplace-server-side-nine.vercel.app/addAToy/${_id}`, {
         method: "PATCH",
         headers: {
             "content-type": "application/json"
