@@ -61,7 +61,7 @@ const ShopByCategory = () => {
                 <div className="card bg-base-100 shadow-xl" key={panda._id}>
                   <figure>
                     <img
-                      className="h-48 w-full"
+                      className="h-56 w-full"
                       src={panda.photo}
                       alt="Image not found"
                     />

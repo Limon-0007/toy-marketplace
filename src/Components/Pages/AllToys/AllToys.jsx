@@ -18,7 +18,6 @@ const AllToys = () => {
 
   const HandleSearch = () => {
     const search = searchRef.current.value
-    console.log(search)
     setSearch(search)
   }
 
